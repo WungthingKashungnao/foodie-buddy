@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Italianno&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+/* header start */
+header {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid black;
+  padding: 1rem;
+}
+.head-logo .logo-header {
+  font-family: "Italianno", cursive;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 2.5rem;
+}
+
+.head-nav .head-nav-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.head-nav .head-nav-list .head-nav-item {
+  margin: 0 1rem;
+  font-size: 1.5rem;
+}
+.head-nav .head-nav-list .head-nav-item a {
+  color: black;
+}
+
+.login-header {
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.header-hamburger {
+  display: none;
+}
+/* header end */
+
+/* media queries  start -------------------------------------------------- */
+@media screen and (max-width: 720px) {
+  /* header start */
+  .login-header {
+    display: none;
+  }
+  .header-hamburger {
+    cursor: pointer;
+    font-size: 2rem;
+    display: block;
+  }
+  .head-nav .head-nav-list {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    right: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+  }
+  .head-nav .head-nav-list .head-nav-item {
+    width: 100%;
+    border: 2px solid black;
+    border-left: 10px solid black; /* Left border */
+    padding: 1rem 0;
+    padding-left: 1rem;
+  }
+  .head-nav .head-nav-list .head-nav-item:nth-child(1),
+  .head-nav .head-nav-list .head-nav-item:nth-child(2),
+  .head-nav .head-nav-list .head-nav-item:nth-child(3) {
+    border-bottom: 0;
+  }
+  .head-nav .hidden {
+    display: none;
+  }
+  /* header end */
+}
+/* header end */
+/* media quries end -------------------------------------------------- */
