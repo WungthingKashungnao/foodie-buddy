@@ -9,6 +9,7 @@
 /* header start */
 header {
   width: 100%;
+  height: 90px;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -29,6 +30,7 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  background-color: white;
 }
 .head-nav .head-nav-list .head-nav-item {
   margin: 0 1rem;
@@ -38,15 +40,111 @@ header {
   color: black;
 }
 
+.header-left-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .login-header {
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+.cart {
+  margin-right: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .header-hamburger {
   display: none;
 }
+
 /* header end */
+
+/* home start */
+#home {
+  background-image: url("../assets/home.jpg");
+  background-size: cover;
+  width: 100vw;
+  height: calc(100vh - 90px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+}
+
+.carousel-container {
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+.carousel-item {
+  width: 500px;
+  height: 500px;
+  flex-shrink: 0; /* Ensures only one image is shown at a time */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item img {
+  width: 100%;
+  max-width: 300px; /* Ensures images remain 300px */
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.nav-btn {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure buttons are on top */
+}
+
+#prevBtn {
+  left: 10px;
+  display: flex; /* Ensure it is visible */
+}
+
+#nextBtn {
+  right: 10px;
+  display: flex; /* Ensure it is visible */
+}
+
+/* Ensure buttons remain clickable */
+.nav-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+/* home end */
 
 /* media queries  start -------------------------------------------------- */
 @media screen and (max-width: 720px) {
@@ -85,6 +183,23 @@ header {
     display: none;
   }
   /* header end */
+
+  /* home start */
+  .carousel-container {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .carousel-item {
+    width: 100%;
+    height: auto;
+  }
+
+  .carousel-item img {
+    width: 100%; /* Full width on small screens */
+    max-width: 300px; /* Keep max 300px */
+    height: auto;
+  }
+  /* home end */
 }
-/* header end */
 /* media quries end -------------------------------------------------- */
