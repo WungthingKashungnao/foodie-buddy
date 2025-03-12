@@ -25,74 +25,53 @@ const images = [
   "assets/home carousel food/food13.jpg",
 ];
 let index = 0; // Track current image index
-let totalImages = 0; // Will be updated after images are loaded
 
-// Function to load images dynamically
+// Load images dynamically
 function loadImages() {
-  track.innerHTML = ""; // Clear track before adding new images
-
   images.forEach((imgSrc) => {
-    const item = document.createElement("div");
-    item.classList.add("carousel-item");
-
     const imgElement = document.createElement("img");
     imgElement.src = imgSrc;
-    imgElement.alt = "Food Image";
-
-    item.appendChild(imgElement);
-    track.appendChild(item);
+    imgElement.classList.add("carousel-item");
+    track.appendChild(imgElement);
   });
 
-  // Update total image count after loading
-  totalImages = images.length;
-
-  // Ensure the carousel starts at the correct position
-  updateCarousel();
+  // Ensure track width is set correctly
+  track.style.width = `${images.length * 100}%`;
 }
 
-// Get the actual width of the images dynamically
-function getImageWidth() {
-  const firstImage = document.querySelector(".carousel-item img");
-  return firstImage ? firstImage.clientWidth : 300; // Default to 300px if unavailable
-}
-
-// Function to update carousel position
+// Ensure images load before updating
+window.onload = function () {
+  loadImages();
+  setTimeout(() => updateCarousel(), 500);
+};
+// Update carousel position
 function updateCarousel() {
-  const imageWidth = getImageWidth();
-  track.style.transform = `translateX(${-index * imageWidth}px)`;
+  track.style.transform = `translateX(${-index * 100}%)`;
 }
-
 // carousel elemtents end
 
 // header events start
-// Add a click event listener to the header-hamburger div
-headerHamburger.addEventListener("click", function () {
-  const icon = headerHamburger.querySelector("i");
-  icon.classList.toggle("fa-bars");
-  icon.classList.toggle("fa-x");
+// Update carousel position
+function updateCarousel() {
+  track.style.transform = `translateX(${-index * 100}%)`;
+}
 
-  headNavList.classList.toggle("hidden");
-});
-// header events end
-
-// carousel events start
-
-// Load images dynamically
-// Move to next image
+// Next & Prev Button Actions
 nextBtn.addEventListener("click", () => {
-  index = (index + 1) % totalImages; // Loops back to first image
+  if (index < images.length - 1) {
+    index++;
+  } else {
+    index = 0; // Loop back to first image
+  }
   updateCarousel();
 });
 
-// Move to previous image (Fixed issue where it skipped images)
 prevBtn.addEventListener("click", () => {
-  index = (index - 1 + totalImages) % totalImages; // Loops back to last image
+  if (index > 0) {
+    index--;
+  } else {
+    index = images.length - 1; // Loop back to last image
+  }
   updateCarousel();
 });
-
-// Ensure image width updates on window resize
-window.addEventListener("resize", updateCarousel);
-
-// Load images on page load
-loadImages();
 // carousele events end

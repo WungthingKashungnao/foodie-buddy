@@ -76,74 +76,61 @@ header {
 .carousel {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 720px;
   overflow: hidden;
 }
 
 .carousel-container {
   width: 100%;
-  max-width: 500px;
-  height: 500px;
+  height: 400px; /* Adjust as needed */
   overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.4s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
 }
 
 .carousel-item {
-  width: 500px;
-  height: 500px;
-  flex-shrink: 0; /* Ensures only one image is shown at a time */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Ensures the full image is visible without cropping */
 }
 
 .carousel-item img {
   width: 100%;
-  max-width: 300px; /* Ensures images remain 300px */
-  height: auto;
-  object-fit: cover;
-  border-radius: 12px;
+  height: 100%;
+  object-fit: contain; /* Prevents zoom-in effect */
 }
 
 .nav-btn {
   background: rgba(0, 0, 0, 0.5);
-  color: white;
   border: none;
+  color: white;
   font-size: 24px;
   cursor: pointer;
   padding: 10px;
+  z-index: 10;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Ensure buttons are on top */
 }
 
 #prevBtn {
-  left: 10px;
-  display: flex; /* Ensure it is visible */
+  left: 5px;
 }
-
 #nextBtn {
-  right: 10px;
-  display: flex; /* Ensure it is visible */
+  right: 5px;
 }
 
-/* Ensure buttons remain clickable */
-.nav-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
 /* home end */
 
 /* media queries  start -------------------------------------------------- */
@@ -189,17 +176,17 @@ header {
     max-width: 100%;
     height: auto;
   }
-
   .carousel-item {
     width: 100%;
     height: auto;
   }
 
   .carousel-item img {
-    width: 100%; /* Full width on small screens */
+    width: 100%;
     max-width: 300px; /* Keep max 300px */
     height: auto;
   }
+
   /* home end */
 }
 /* media quries end -------------------------------------------------- */
