@@ -31,6 +31,7 @@ header {
   align-items: center;
   width: 100%;
   background-color: white;
+  z-index: 100;
 }
 .head-nav .head-nav-list .head-nav-item {
   margin: 0 1rem;
@@ -64,15 +65,29 @@ header {
 
 /* home start */
 #home {
-  background-image: url("../assets/home.jpg");
+  background-image: url("../assets/home3.jpg");
   background-size: cover;
   width: 100vw;
   height: calc(100vh - 90px);
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
+.home-text {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 10%;
+  right: 50%;
+  left: 50%;
+  transform: translateX(-50%);
 
+  font-family: "Italianno", cursive;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 5rem;
+}
 .carousel {
   display: flex;
   align-items: center;
@@ -172,6 +187,9 @@ header {
   /* header end */
 
   /* home start */
+  .home-text {
+    font-size: 3rem;
+  }
   .carousel-container {
     max-width: 100%;
     height: auto;

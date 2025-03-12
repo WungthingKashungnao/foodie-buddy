@@ -1,9 +1,9 @@
-// header elements start
+// header elements start *************************************
 const headerHamburger = document.querySelector(".header-hamburger");
 const headNavList = document.querySelector(".head-nav-list");
-// header elements end
+// header elements end ********************************************
 
-// carousel elements start
+// home elements start **********************************************
 const track = document.querySelector(".carousel-track");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
@@ -48,9 +48,20 @@ window.onload = function () {
 function updateCarousel() {
   track.style.transform = `translateX(${-index * 100}%)`;
 }
-// carousel elemtents end
+// home elemtents end ****************************************
 
-// header events start
+// header events start ***********************************
+// Add a click event listener to the header-hamburger div
+headerHamburger.addEventListener("click", function () {
+  const icon = headerHamburger.querySelector("i");
+  icon.classList.toggle("fa-bars");
+  icon.classList.toggle("fa-x");
+
+  headNavList.classList.toggle("hidden");
+});
+// header events end ***************************************
+
+// home events start **************************************
 // Update carousel position
 function updateCarousel() {
   track.style.transform = `translateX(${-index * 100}%)`;
@@ -75,3 +86,4 @@ prevBtn.addEventListener("click", () => {
   updateCarousel();
 });
 // carousele events end
+// home events end *************************************************
