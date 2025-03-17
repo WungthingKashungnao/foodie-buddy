@@ -126,6 +126,9 @@ const nonVegItems = [
   { src: "./assets/meat/meat6.jpg", alt: "meat 6" },
 ];
 
+// Array to store cart items
+let cart = [];
+
 // Function to dynamically populate a category list
 function populateCategory(containerId, items) {
   const container = document.getElementById(containerId);
@@ -138,9 +141,28 @@ function populateCategory(containerId, items) {
     img.src = item.src;
     img.alt = item.alt;
 
+    // Create Add to Cart Icon
+    const cartIcon = document.createElement("i");
+    cartIcon.classList.add("fas", "fa-shopping-cart", "cart-icon");
+
+    // add click event to add to cart
+    cartIcon.addEventListener("click", () => addToCart(item));
+
     categoryImg.appendChild(img);
+    categoryImg.appendChild(cartIcon);
     container.appendChild(categoryImg);
   });
+}
+function addToCart(item) {
+  // Check if item already exists in the cart
+  const isItemInCart = cart.some((cartItem) => cartItem.src === item.src);
+
+  if (isItemInCart) {
+    window.alert("This item is already in your cart!");
+  } else {
+    cart.push(item);
+    console.log("cart >>>", cart);
+  }
 }
 
 // Populate each category
