@@ -91,43 +91,43 @@ prevBtn.addEventListener("click", () => {
 // menu events start ********************************************************
 // Array of beverage data start
 const beverages = [
-  { src: "./assets/beverages/beverage1.jpg", alt: "Beverage 1" },
-  { src: "./assets/beverages/beverage2.jpg", alt: "Beverage 2" },
-  { src: "./assets/beverages/beverage3.jpg", alt: "Beverage 3" },
-  { src: "./assets/beverages/beverage4.jpg", alt: "Beverage 4" },
-  { src: "./assets/beverages/beverage5.jpg", alt: "Beverage 5" },
-  { src: "./assets/beverages/beverage6.jpg", alt: "Beverage 6" },
+  { src: "./assets/beverages/beverage1.jpg", alt: "Beverage 1", price: 100 },
+  { src: "./assets/beverages/beverage2.jpg", alt: "Beverage 2", price: 70 },
+  { src: "./assets/beverages/beverage3.jpg", alt: "Beverage 3", price: 120 },
+  { src: "./assets/beverages/beverage4.jpg", alt: "Beverage 4", price: 130 },
+  { src: "./assets/beverages/beverage5.jpg", alt: "Beverage 5", price: 150 },
+  { src: "./assets/beverages/beverage6.jpg", alt: "Beverage 6", price: 100 },
 ];
 
 const desserts = [
-  { src: "./assets/dessert/dessert1.jpg", alt: "Dessert 1" },
-  { src: "./assets/dessert/dessert2.jpg", alt: "Dessert 2" },
-  { src: "./assets/dessert/dessert3.jpg", alt: "Dessert 3" },
-  { src: "./assets/dessert/dessert4.jpg", alt: "Dessert 4" },
-  { src: "./assets/dessert/dessert5.jpg", alt: "Dessert 5" },
-  { src: "./assets/dessert/dessert6.jpg", alt: "Dessert 6" },
+  { src: "./assets/dessert/dessert1.jpg", alt: "Dessert 1", price: 100 },
+  { src: "./assets/dessert/dessert2.jpg", alt: "Dessert 2", price: 150 },
+  { src: "./assets/dessert/dessert3.jpg", alt: "Dessert 3", price: 130 },
+  { src: "./assets/dessert/dessert4.jpg", alt: "Dessert 4", price: 140 },
+  { src: "./assets/dessert/dessert5.jpg", alt: "Dessert 5", price: 100 },
+  { src: "./assets/dessert/dessert6.jpg", alt: "Dessert 6", price: 70 },
 ];
 
 const vegItems = [
-  { src: "./assets/veg/veg1.jpg", alt: "veg 1" },
-  { src: "./assets/veg/veg2.jpg", alt: "veg 2" },
-  { src: "./assets/veg/veg3.jpg", alt: "veg 3" },
-  { src: "./assets/veg/veg4.jpg", alt: "veg 4" },
-  { src: "./assets/veg/veg5.jpg", alt: "veg 5" },
-  { src: "./assets/veg/veg6.jpg", alt: "veg 6" },
+  { src: "./assets/veg/veg1.jpg", alt: "veg 1", price: 130 },
+  { src: "./assets/veg/veg2.jpg", alt: "veg 2", price: 150 },
+  { src: "./assets/veg/veg3.jpg", alt: "veg 3", price: 200 },
+  { src: "./assets/veg/veg4.jpg", alt: "veg 4", price: 150 },
+  { src: "./assets/veg/veg5.jpg", alt: "veg 5", price: 180 },
+  { src: "./assets/veg/veg6.jpg", alt: "veg 6", price: 230 },
 ];
 
 const nonVegItems = [
-  { src: "./assets/meat/meat1.jpg", alt: "meat 1" },
-  { src: "./assets/meat/meat2.jpg", alt: "meat 2" },
-  { src: "./assets/meat/meat3.jpg", alt: "meat 3" },
-  { src: "./assets/meat/meat4.jpg", alt: "meat 4" },
-  { src: "./assets/meat/meat5.jpg", alt: "meat 5" },
-  { src: "./assets/meat/meat6.jpg", alt: "meat 6" },
+  { src: "./assets/meat/meat1.jpg", alt: "meat 1", price: 200 },
+  { src: "./assets/meat/meat2.jpg", alt: "meat 2", price: 250 },
+  { src: "./assets/meat/meat3.jpg", alt: "meat 3", price: 220 },
+  { src: "./assets/meat/meat4.jpg", alt: "meat 4", price: 240 },
+  { src: "./assets/meat/meat5.jpg", alt: "meat 5", price: 270 },
+  { src: "./assets/meat/meat6.jpg", alt: "meat 6", price: 230 },
 ];
 
 // Array to store cart items
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // Function to dynamically populate a category list
 function populateCategory(containerId, items) {
@@ -161,9 +161,15 @@ function addToCart(item) {
     window.alert("This item is already in your cart!");
   } else {
     cart.push(item);
-    console.log("cart >>>", cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
   }
 }
+// update cart count
+function updateCartCount() {
+  document.getElementById("cart-count").textContent = cart.length;
+}
+updateCartCount();
 
 // Populate each category
 populateCategory("beverage-list", beverages);
