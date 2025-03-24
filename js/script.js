@@ -209,3 +209,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 // menu events end ********************************************************
+
+document.addEventListener("DOMContentLoaded", function () {
+  const loginHeader = document.querySelector(".login-header");
+  const loginHeaderIcon = loginHeader ? loginHeader.querySelector("i") : null;
+
+  if (loginHeaderIcon) {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    const loggedInUser = users.find((user) => user.isLoggedIn);
+
+    if (loggedInUser) {
+      loginHeaderIcon.classList.replace("fa-right-to-bracket", "fa-power-off");
+
+      // Remove anchor tag wrapper
+      const parentAnchor = loginHeaderIcon.closest("a");
+      if (parentAnchor) {
+        parentAnchor.replaceWith(loginHeaderIcon);
+      }
+
+      loginHeaderIcon.addEventListener("click", function () {
+        users = users.map((user) => ({ ...user, isLoggedIn: false }));
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.removeItem("loggedInUser");
+        alert("Logged out successfully!");
+        window.location.reload(); // Ensure UI updates immediately
+      });
+    }
+  }
+});
