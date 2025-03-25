@@ -43,7 +43,8 @@ function calculateTotal() {
     (sum, item) => sum + item.price * (item.qty || 1),
     0
   );
-  cartTotalElement.innerHTML = `Total: &#x20B9; ${total}`;
+  cartTotalElement.innerHTML = `Total: &#x20B9; <span id="total-amount">${total}</span>`;
+  updateCartTotal(total);
 }
 
 // Function to attach event listeners to buttons
@@ -68,6 +69,38 @@ function attachEventListeners() {
     });
   });
 }
+// cart checkout total start
+function updateCartTotal(total) {
+  const totalAmountElement = document.getElementById("total-amount");
+  const checkoutButtonContainer = document.getElementById(
+    "checkout-button-container"
+  );
+  // Update the total amount
+  totalAmountElement.textContent = total;
 
+  // Remove existing checkout button if it exists
+  checkoutButtonContainer.innerHTML = "";
+
+  // Add the "Checkout" button if total is greater than 0
+  if (total > 0) {
+    const checkoutButton = document.createElement("a");
+    checkoutButton.href = "#"; // Default href to prevent navigation
+    checkoutButton.textContent = "Check Out";
+    checkoutButton.classList.add("checkout-button");
+    checkoutButton.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent default link behavior
+      const loggedInUser = localStorage.getItem("loggedInUser");
+
+      if (loggedInUser) {
+        window.location.href = "./checkout.html"; // Redirect if logged in
+      } else {
+        alert("Login first to checkout");
+      }
+    });
+
+    checkoutButtonContainer.appendChild(checkoutButton);
+  }
+}
+// cart checkout total end
 // Initial render of the cart
 renderCart();
